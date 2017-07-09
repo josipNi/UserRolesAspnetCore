@@ -1,0 +1,37 @@
+﻿@model UsersWithRolesVM
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Users</th>
+            <th>@Model.RoleNames</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.Users_list)
+    {
+        <tbody>
+            <tr id="user-id-@item.Id">
+                <td>
+                    @item.FirstName <br />
+                    @item.LastName<br />
+                    @item.Email<br />
+                </td>
+                <td>
+                    @foreach (var role in Model.Roles_list)
+                {
+                    if (item.UserRoles.Where(w => w.RoleId == role.Id).Any())
+                    {
+                            <input type="checkbox" name="vehicle" value="@role.Id" checked="checked" onclick="setUserData('@item.Id','@role.Id')"> @role.Name
+                        }
+                        else
+                        {
+                            <input type="checkbox" name="vehicle" value="@role.Id" onclick="setUserData('@item.Id','@role.Id')"> @role.Name
+
+                        }
+
+                    }
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>
