@@ -55,8 +55,7 @@ namespace UserTable.Server.Data
                         AccessFailedCount = 0,
                     };
                     var password = new PasswordHasher<ApplicationUser>();
-                    var passawordHashed = password.HashPassword(user, "Antegadzo123!");
-                    user.PasswordHash = passawordHashed;
+                    user.PasswordHash = password.HashPassword(user, "testtest12323!"); ;
                     await _seedUserManager.CreateAsync(user);
 
                     IdentityResult rolesAdded = await AssignRoles(serviceProvider, user.Id, roles);
