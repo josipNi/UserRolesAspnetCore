@@ -3,5 +3,5 @@
 @echo off
 dotnet restore UserTable\
 dotnet build UserTable\ 
-@echo Now, run the following to start the project: dotnet run
+@echo Now, open UserTables\ and run the following to start the project: dotnet run
 pause
