@@ -7,7 +7,7 @@
         {
             "taskName": "build",
             "args": [
-                "${workspaceRoot}/Web/SEB_Application.csproj"
+                "${workspaceRoot}/UserTable/UserTable.csproj"
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
