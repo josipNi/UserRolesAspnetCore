@@ -37,8 +37,8 @@ namespace UserTable
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<Profico_DB_Context>();
 
-            services.AddSingleton<IApplicationUsersRepository, ApplicationUserRepository>();
-            services.AddSingleton<IIdentityRoleUsersRepository, IdentityRoleUsersRepository>();
+            services.AddScoped<IApplicationUsersRepository, ApplicationUserRepository>();
+            services.AddScoped<IIdentityRoleUsersRepository, IdentityRoleUsersRepository>();
             AutoMapperConfiguration.Configure();
             services.AddMvc();
         }
