@@ -46,23 +46,17 @@ namespace UserTable.Server.Controllers
                         result = await _userManager.RemoveFromRoleAsync(user, role.Name);
                     else
                         result = await _userManager.AddToRoleAsync(user, role.Name);
-                   
+
                     if (result?.Succeeded != null)
-                    {
-                        
                         return Ok();
-                    }
                     else
-                    {
                         return BadRequest();
-                    }
                 }
                 else
-                {
                     return BadRequest();
-                }
+
             }
-            catch 
+            catch
             {
                 // log
                 return BadRequest();
