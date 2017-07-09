@@ -19,8 +19,8 @@ namespace UserTable.Server.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public RolesController(
-         UserManager<ApplicationUser> userManager,
-             RoleManager<IdentityRole> roleManager)
+      UserManager<ApplicationUser> userManager,
+          RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -54,7 +54,6 @@ namespace UserTable.Server.Controllers
                 }
                 else
                     return BadRequest();
-
             }
             catch
             {
