@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -29,8 +30,10 @@ namespace UserTable.Server.Data
         {
             try
             {
-                string[] roles = new string[] { "Admin", "User", "Guest" };
-                bool areRolesCreated = await CreateRoles(serviceProvider, roles);
+             
+                string[] all_roles = new string[] { "Admin", "User", "Guest" };
+               
+                bool areRolesCreated = await CreateRoles(serviceProvider, all_roles);
 
                 if (!areRolesCreated)
                     return false;
@@ -38,7 +41,8 @@ namespace UserTable.Server.Data
                 UserManager<ApplicationUser> _seedUserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
                 for (int i = 0; i < userAmount; i++)
                 {
-                    int randomI = new Random().Next(0, 3);
+                    int randomI = new Random().Next(0, all_roles.Length);
+                    string[] roles = all_roles.Take(randomI).ToArray();
                     ApplicationUser user = new ApplicationUser
                     {
                         FirstName = "firstName" + i,
@@ -55,7 +59,7 @@ namespace UserTable.Server.Data
                         AccessFailedCount = 0,
                     };
                     var password = new PasswordHasher<ApplicationUser>();
-                    user.PasswordHash = password.HashPassword(user, "testtest12323!"); ;
+                    user.PasswordHash = password.HashPassword(user, "testtest12323!");
                     await _seedUserManager.CreateAsync(user);
 
                     IdentityResult rolesAdded = await AssignRoles(serviceProvider, user.Id, roles);
