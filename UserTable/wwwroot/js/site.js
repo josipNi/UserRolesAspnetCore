@@ -12,11 +12,12 @@ var setUserData = function (userId, roleId) {
         type: 'POST',
         url: '/api/roles',
         data: stringified_data,
-        success: function (success) {
-            alert('success');
+        success: function (data) {
+            console.log(data);
+            console.log('success');
         },
         contentType: 'application/json',
-        dataType: 'json'
+
     }).fail(function (errors) { console.log(errors); });
 
     console.log(result);
