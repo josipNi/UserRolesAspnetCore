@@ -18,15 +18,15 @@
                 </td>
                 <td>
                     @foreach (var role in Model.Roles_list)
-                {
-                    if (item.UserRoles.Where(w => w.RoleId == role.Id).Any())
                     {
-                            <input type="checkbox" name="vehicle" value="@role.Id" checked="checked" onclick="setUserData('@item.Id','@role.Id')"> @role.Name
+                        string unique_id = item.Id + role.Id;
+                        if (item.UserRoles.Where(w => w.RoleId == role.Id).Any())
+                        {
+                            <input type="checkbox" name="role" id="@unique_id" checked onclick="setUserData('@item.Id','@role.Id',event,'@unique_id')"> @role.Name
                         }
                         else
                         {
-                            <input type="checkbox" name="vehicle" value="@role.Id" onclick="setUserData('@item.Id','@role.Id')"> @role.Name
-
+                            <input type="checkbox" id="@unique_id" name="role" value="@role.Id" onclick="setUserData('@item.Id','@role.Id',event, '@unique_id')"> @role.Name
                         }
 
                     }
