@@ -47,7 +47,7 @@ namespace UserTable.Server.Controllers
                     else
                         result = await _userManager.AddToRoleAsync(user, role.Name);
 
-                    if (result?.Succeeded != null)
+                    if (result?.Succeeded != null && result.Succeeded)
                         return Ok();
                     else
                         return BadRequest();
